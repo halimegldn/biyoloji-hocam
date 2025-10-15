@@ -4,7 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
-import { Moon, Sun, Home, User, BookOpen, Library, Mail, Bell, ChevronLeft, ChevronRight } from "lucide-react"
+import { Moon, Sun, Home, User, BookOpen, Library, Mail, Bell, ChevronLeft, ChevronRight, Monitor } from "lucide-react"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 const iconMap = {
