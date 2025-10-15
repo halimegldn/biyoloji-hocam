@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/features/shared/navbar";
 import ClientProviders from "@/features/shared/client-provider";
+import { Sidebar } from "@/features/shared/sidebar";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -17,10 +17,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ClientProviders>
-          <header>
-            <Navbar />
-          </header>
-          <main>{children}</main>
+          <div className="">
+            {/* SOL SABİT SIDEBAR */}
+            <Sidebar />
+
+            {/* SAĞ İÇERİK ALANI */}
+            <main className="ml-40">{children}</main>
+          </div>
         </ClientProviders>
       </body>
     </html>
