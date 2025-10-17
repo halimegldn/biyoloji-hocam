@@ -59,10 +59,10 @@ export function Sidebar() {
 
     const navLinksData = [
         { label: "Anasayfa", href: "/" },
-        { label: "Hakkımda", href: "/hakkimda" },
+        { label: "Hakkımda", href: "/about" },
         { label: "Derslerim", href: "/derslerim" },
         { label: "Kaynaklar", href: "/kaynaklar" },
-        { label: "İletişim", href: "/iletisim" },
+        { label: "İletişim", href: "/contact" },
         { label: "Duyurular", href: "/duyurular" },
     ]
 

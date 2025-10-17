@@ -946,6 +946,36 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type PersonCountOutputType
+   */
+
+  export type PersonCountOutputType = {
+    contact: number
+  }
+
+  export type PersonCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    contact?: boolean | PersonCountOutputTypeCountContactArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PersonCountOutputType without action
+   */
+  export type PersonCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonCountOutputType
+     */
+    select?: PersonCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PersonCountOutputType without action
+   */
+  export type PersonCountOutputTypeCountContactArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContactWhereInput
+  }
+
 
   /**
    * Models
@@ -967,6 +997,7 @@ export namespace Prisma {
     email: string | null
     subject: string | null
     message: string | null
+    personId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -977,6 +1008,7 @@ export namespace Prisma {
     email: string | null
     subject: string | null
     message: string | null
+    personId: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -987,6 +1019,7 @@ export namespace Prisma {
     email: number
     subject: number
     message: number
+    personId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -999,6 +1032,7 @@ export namespace Prisma {
     email?: true
     subject?: true
     message?: true
+    personId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1009,6 +1043,7 @@ export namespace Prisma {
     email?: true
     subject?: true
     message?: true
+    personId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1019,6 +1054,7 @@ export namespace Prisma {
     email?: true
     subject?: true
     message?: true
+    personId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1102,6 +1138,7 @@ export namespace Prisma {
     email: string
     subject: string
     message: string
+    personId: string
     createdAt: Date
     updatedAt: Date
     _count: ContactCountAggregateOutputType | null
@@ -1129,6 +1166,7 @@ export namespace Prisma {
     email?: boolean
     subject?: boolean
     message?: boolean
+    personId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     person?: boolean | Contact$personArgs<ExtArgs>
@@ -1140,8 +1178,10 @@ export namespace Prisma {
     email?: boolean
     subject?: boolean
     message?: boolean
+    personId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    person?: boolean | Contact$personArgs<ExtArgs>
   }, ExtArgs["result"]["contact"]>
 
   export type ContactSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1150,8 +1190,10 @@ export namespace Prisma {
     email?: boolean
     subject?: boolean
     message?: boolean
+    personId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    person?: boolean | Contact$personArgs<ExtArgs>
   }, ExtArgs["result"]["contact"]>
 
   export type ContactSelectScalar = {
@@ -1160,16 +1202,21 @@ export namespace Prisma {
     email?: boolean
     subject?: boolean
     message?: boolean
+    personId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "subject" | "message" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
+  export type ContactOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "subject" | "message" | "personId" | "createdAt" | "updatedAt", ExtArgs["result"]["contact"]>
   export type ContactInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     person?: boolean | Contact$personArgs<ExtArgs>
   }
-  export type ContactIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type ContactIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ContactIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    person?: boolean | Contact$personArgs<ExtArgs>
+  }
+  export type ContactIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    person?: boolean | Contact$personArgs<ExtArgs>
+  }
 
   export type $ContactPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Contact"
@@ -1182,6 +1229,7 @@ export namespace Prisma {
       email: string
       subject: string
       message: string
+      personId: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["contact"]>
@@ -1613,6 +1661,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Contact", 'String'>
     readonly subject: FieldRef<"Contact", 'String'>
     readonly message: FieldRef<"Contact", 'String'>
+    readonly personId: FieldRef<"Contact", 'String'>
     readonly createdAt: FieldRef<"Contact", 'DateTime'>
     readonly updatedAt: FieldRef<"Contact", 'DateTime'>
   }
@@ -1864,6 +1913,10 @@ export namespace Prisma {
      */
     data: ContactCreateManyInput | ContactCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -1934,6 +1987,10 @@ export namespace Prisma {
      * Limit how many Contacts to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ContactIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2205,6 +2262,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     contact?: boolean | Person$contactArgs<ExtArgs>
+    _count?: boolean | PersonCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["person"]>
 
   export type PersonSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2213,7 +2271,6 @@ export namespace Prisma {
     contactId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    contact?: boolean | Person$contactArgs<ExtArgs>
   }, ExtArgs["result"]["person"]>
 
   export type PersonSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2222,7 +2279,6 @@ export namespace Prisma {
     contactId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    contact?: boolean | Person$contactArgs<ExtArgs>
   }, ExtArgs["result"]["person"]>
 
   export type PersonSelectScalar = {
@@ -2236,18 +2292,15 @@ export namespace Prisma {
   export type PersonOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "contactId" | "createdAt" | "updatedAt", ExtArgs["result"]["person"]>
   export type PersonInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     contact?: boolean | Person$contactArgs<ExtArgs>
+    _count?: boolean | PersonCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type PersonIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | Person$contactArgs<ExtArgs>
-  }
-  export type PersonIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    contact?: boolean | Person$contactArgs<ExtArgs>
-  }
+  export type PersonIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type PersonIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $PersonPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Person"
     objects: {
-      contact: Prisma.$ContactPayload<ExtArgs> | null
+      contact: Prisma.$ContactPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2649,7 +2702,7 @@ export namespace Prisma {
    */
   export interface Prisma__PersonClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    contact<T extends Person$contactArgs<ExtArgs> = {}>(args?: Subset<T, Person$contactArgs<ExtArgs>>): Prisma__ContactClient<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    contact<T extends Person$contactArgs<ExtArgs> = {}>(args?: Subset<T, Person$contactArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2933,10 +2986,6 @@ export namespace Prisma {
      */
     data: PersonCreateManyInput | PersonCreateManyInput[]
     skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PersonIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3007,10 +3056,6 @@ export namespace Prisma {
      * Limit how many People to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PersonIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -3096,6 +3141,11 @@ export namespace Prisma {
      */
     include?: ContactInclude<ExtArgs> | null
     where?: ContactWhereInput
+    orderBy?: ContactOrderByWithRelationInput | ContactOrderByWithRelationInput[]
+    cursor?: ContactWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ContactScalarFieldEnum | ContactScalarFieldEnum[]
   }
 
   /**
@@ -3137,6 +3187,7 @@ export namespace Prisma {
     email: 'email',
     subject: 'subject',
     message: 'message',
+    personId: 'personId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -3238,6 +3289,7 @@ export namespace Prisma {
     email?: StringFilter<"Contact"> | string
     subject?: StringFilter<"Contact"> | string
     message?: StringFilter<"Contact"> | string
+    personId?: StringFilter<"Contact"> | string
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
     person?: XOR<PersonNullableScalarRelationFilter, PersonWhereInput> | null
@@ -3249,6 +3301,7 @@ export namespace Prisma {
     email?: SortOrder
     subject?: SortOrder
     message?: SortOrder
+    personId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     person?: PersonOrderByWithRelationInput
@@ -3263,6 +3316,7 @@ export namespace Prisma {
     email?: StringFilter<"Contact"> | string
     subject?: StringFilter<"Contact"> | string
     message?: StringFilter<"Contact"> | string
+    personId?: StringFilter<"Contact"> | string
     createdAt?: DateTimeFilter<"Contact"> | Date | string
     updatedAt?: DateTimeFilter<"Contact"> | Date | string
     person?: XOR<PersonNullableScalarRelationFilter, PersonWhereInput> | null
@@ -3274,6 +3328,7 @@ export namespace Prisma {
     email?: SortOrder
     subject?: SortOrder
     message?: SortOrder
+    personId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ContactCountOrderByAggregateInput
@@ -3290,6 +3345,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Contact"> | string
     subject?: StringWithAggregatesFilter<"Contact"> | string
     message?: StringWithAggregatesFilter<"Contact"> | string
+    personId?: StringWithAggregatesFilter<"Contact"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Contact"> | Date | string
   }
@@ -3303,7 +3359,7 @@ export namespace Prisma {
     contactId?: StringNullableFilter<"Person"> | string | null
     createdAt?: DateTimeFilter<"Person"> | Date | string
     updatedAt?: DateTimeFilter<"Person"> | Date | string
-    contact?: XOR<ContactNullableScalarRelationFilter, ContactWhereInput> | null
+    contact?: ContactListRelationFilter
   }
 
   export type PersonOrderByWithRelationInput = {
@@ -3312,20 +3368,20 @@ export namespace Prisma {
     contactId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    contact?: ContactOrderByWithRelationInput
+    contact?: ContactOrderByRelationAggregateInput
   }
 
   export type PersonWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     name?: string
-    contactId?: string
     AND?: PersonWhereInput | PersonWhereInput[]
     OR?: PersonWhereInput[]
     NOT?: PersonWhereInput | PersonWhereInput[]
+    contactId?: StringNullableFilter<"Person"> | string | null
     createdAt?: DateTimeFilter<"Person"> | Date | string
     updatedAt?: DateTimeFilter<"Person"> | Date | string
-    contact?: XOR<ContactNullableScalarRelationFilter, ContactWhereInput> | null
-  }, "id" | "name" | "contactId">
+    contact?: ContactListRelationFilter
+  }, "id" | "name">
 
   export type PersonOrderByWithAggregationInput = {
     id?: SortOrder
@@ -3366,9 +3422,9 @@ export namespace Prisma {
     email: string
     subject: string
     message: string
+    personId: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    person?: PersonUncheckedCreateNestedOneWithoutContactInput
   }
 
   export type ContactUpdateInput = {
@@ -3388,9 +3444,9 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
+    personId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    person?: PersonUncheckedUpdateOneWithoutContactNestedInput
   }
 
   export type ContactCreateManyInput = {
@@ -3399,6 +3455,7 @@ export namespace Prisma {
     email: string
     subject: string
     message: string
+    personId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3419,6 +3476,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     subject?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
+    personId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3426,9 +3484,10 @@ export namespace Prisma {
   export type PersonCreateInput = {
     id?: string
     name: string
+    contactId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    contact?: ContactCreateNestedOneWithoutPersonInput
+    contact?: ContactCreateNestedManyWithoutPersonInput
   }
 
   export type PersonUncheckedCreateInput = {
@@ -3437,14 +3496,16 @@ export namespace Prisma {
     contactId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    contact?: ContactUncheckedCreateNestedManyWithoutPersonInput
   }
 
   export type PersonUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    contact?: ContactUpdateOneWithoutPersonNestedInput
+    contact?: ContactUpdateManyWithoutPersonNestedInput
   }
 
   export type PersonUncheckedUpdateInput = {
@@ -3453,6 +3514,7 @@ export namespace Prisma {
     contactId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    contact?: ContactUncheckedUpdateManyWithoutPersonNestedInput
   }
 
   export type PersonCreateManyInput = {
@@ -3466,6 +3528,7 @@ export namespace Prisma {
   export type PersonUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3515,6 +3578,7 @@ export namespace Prisma {
     email?: SortOrder
     subject?: SortOrder
     message?: SortOrder
+    personId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3525,6 +3589,7 @@ export namespace Prisma {
     email?: SortOrder
     subject?: SortOrder
     message?: SortOrder
+    personId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3535,6 +3600,7 @@ export namespace Prisma {
     email?: SortOrder
     subject?: SortOrder
     message?: SortOrder
+    personId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -3586,14 +3652,19 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type ContactNullableScalarRelationFilter = {
-    is?: ContactWhereInput | null
-    isNot?: ContactWhereInput | null
+  export type ContactListRelationFilter = {
+    every?: ContactWhereInput
+    some?: ContactWhereInput
+    none?: ContactWhereInput
   }
 
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ContactOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type PersonCountOrderByAggregateInput = {
@@ -3644,12 +3715,6 @@ export namespace Prisma {
     connect?: PersonWhereUniqueInput
   }
 
-  export type PersonUncheckedCreateNestedOneWithoutContactInput = {
-    create?: XOR<PersonCreateWithoutContactInput, PersonUncheckedCreateWithoutContactInput>
-    connectOrCreate?: PersonCreateOrConnectWithoutContactInput
-    connect?: PersonWhereUniqueInput
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -3668,34 +3733,50 @@ export namespace Prisma {
     update?: XOR<XOR<PersonUpdateToOneWithWhereWithoutContactInput, PersonUpdateWithoutContactInput>, PersonUncheckedUpdateWithoutContactInput>
   }
 
-  export type PersonUncheckedUpdateOneWithoutContactNestedInput = {
-    create?: XOR<PersonCreateWithoutContactInput, PersonUncheckedCreateWithoutContactInput>
-    connectOrCreate?: PersonCreateOrConnectWithoutContactInput
-    upsert?: PersonUpsertWithoutContactInput
-    disconnect?: PersonWhereInput | boolean
-    delete?: PersonWhereInput | boolean
-    connect?: PersonWhereUniqueInput
-    update?: XOR<XOR<PersonUpdateToOneWithWhereWithoutContactInput, PersonUpdateWithoutContactInput>, PersonUncheckedUpdateWithoutContactInput>
+  export type ContactCreateNestedManyWithoutPersonInput = {
+    create?: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput> | ContactCreateWithoutPersonInput[] | ContactUncheckedCreateWithoutPersonInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutPersonInput | ContactCreateOrConnectWithoutPersonInput[]
+    createMany?: ContactCreateManyPersonInputEnvelope
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
   }
 
-  export type ContactCreateNestedOneWithoutPersonInput = {
-    create?: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput>
-    connectOrCreate?: ContactCreateOrConnectWithoutPersonInput
-    connect?: ContactWhereUniqueInput
-  }
-
-  export type ContactUpdateOneWithoutPersonNestedInput = {
-    create?: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput>
-    connectOrCreate?: ContactCreateOrConnectWithoutPersonInput
-    upsert?: ContactUpsertWithoutPersonInput
-    disconnect?: ContactWhereInput | boolean
-    delete?: ContactWhereInput | boolean
-    connect?: ContactWhereUniqueInput
-    update?: XOR<XOR<ContactUpdateToOneWithWhereWithoutPersonInput, ContactUpdateWithoutPersonInput>, ContactUncheckedUpdateWithoutPersonInput>
+  export type ContactUncheckedCreateNestedManyWithoutPersonInput = {
+    create?: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput> | ContactCreateWithoutPersonInput[] | ContactUncheckedCreateWithoutPersonInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutPersonInput | ContactCreateOrConnectWithoutPersonInput[]
+    createMany?: ContactCreateManyPersonInputEnvelope
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type ContactUpdateManyWithoutPersonNestedInput = {
+    create?: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput> | ContactCreateWithoutPersonInput[] | ContactUncheckedCreateWithoutPersonInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutPersonInput | ContactCreateOrConnectWithoutPersonInput[]
+    upsert?: ContactUpsertWithWhereUniqueWithoutPersonInput | ContactUpsertWithWhereUniqueWithoutPersonInput[]
+    createMany?: ContactCreateManyPersonInputEnvelope
+    set?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    disconnect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    delete?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    update?: ContactUpdateWithWhereUniqueWithoutPersonInput | ContactUpdateWithWhereUniqueWithoutPersonInput[]
+    updateMany?: ContactUpdateManyWithWhereWithoutPersonInput | ContactUpdateManyWithWhereWithoutPersonInput[]
+    deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
+  }
+
+  export type ContactUncheckedUpdateManyWithoutPersonNestedInput = {
+    create?: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput> | ContactCreateWithoutPersonInput[] | ContactUncheckedCreateWithoutPersonInput[]
+    connectOrCreate?: ContactCreateOrConnectWithoutPersonInput | ContactCreateOrConnectWithoutPersonInput[]
+    upsert?: ContactUpsertWithWhereUniqueWithoutPersonInput | ContactUpsertWithWhereUniqueWithoutPersonInput[]
+    createMany?: ContactCreateManyPersonInputEnvelope
+    set?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    disconnect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    delete?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    connect?: ContactWhereUniqueInput | ContactWhereUniqueInput[]
+    update?: ContactUpdateWithWhereUniqueWithoutPersonInput | ContactUpdateWithWhereUniqueWithoutPersonInput[]
+    updateMany?: ContactUpdateManyWithWhereWithoutPersonInput | ContactUpdateManyWithWhereWithoutPersonInput[]
+    deleteMany?: ContactScalarWhereInput | ContactScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3810,6 +3891,7 @@ export namespace Prisma {
   export type PersonCreateWithoutContactInput = {
     id?: string
     name: string
+    contactId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3817,6 +3899,7 @@ export namespace Prisma {
   export type PersonUncheckedCreateWithoutContactInput = {
     id?: string
     name: string
+    contactId?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -3840,6 +3923,7 @@ export namespace Prisma {
   export type PersonUpdateWithoutContactInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3847,6 +3931,7 @@ export namespace Prisma {
   export type PersonUncheckedUpdateWithoutContactInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    contactId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3876,15 +3961,49 @@ export namespace Prisma {
     create: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput>
   }
 
-  export type ContactUpsertWithoutPersonInput = {
-    update: XOR<ContactUpdateWithoutPersonInput, ContactUncheckedUpdateWithoutPersonInput>
-    create: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput>
-    where?: ContactWhereInput
+  export type ContactCreateManyPersonInputEnvelope = {
+    data: ContactCreateManyPersonInput | ContactCreateManyPersonInput[]
+    skipDuplicates?: boolean
   }
 
-  export type ContactUpdateToOneWithWhereWithoutPersonInput = {
-    where?: ContactWhereInput
+  export type ContactUpsertWithWhereUniqueWithoutPersonInput = {
+    where: ContactWhereUniqueInput
+    update: XOR<ContactUpdateWithoutPersonInput, ContactUncheckedUpdateWithoutPersonInput>
+    create: XOR<ContactCreateWithoutPersonInput, ContactUncheckedCreateWithoutPersonInput>
+  }
+
+  export type ContactUpdateWithWhereUniqueWithoutPersonInput = {
+    where: ContactWhereUniqueInput
     data: XOR<ContactUpdateWithoutPersonInput, ContactUncheckedUpdateWithoutPersonInput>
+  }
+
+  export type ContactUpdateManyWithWhereWithoutPersonInput = {
+    where: ContactScalarWhereInput
+    data: XOR<ContactUpdateManyMutationInput, ContactUncheckedUpdateManyWithoutPersonInput>
+  }
+
+  export type ContactScalarWhereInput = {
+    AND?: ContactScalarWhereInput | ContactScalarWhereInput[]
+    OR?: ContactScalarWhereInput[]
+    NOT?: ContactScalarWhereInput | ContactScalarWhereInput[]
+    id?: StringFilter<"Contact"> | string
+    name?: StringFilter<"Contact"> | string
+    email?: StringFilter<"Contact"> | string
+    subject?: StringFilter<"Contact"> | string
+    message?: StringFilter<"Contact"> | string
+    personId?: StringFilter<"Contact"> | string
+    createdAt?: DateTimeFilter<"Contact"> | Date | string
+    updatedAt?: DateTimeFilter<"Contact"> | Date | string
+  }
+
+  export type ContactCreateManyPersonInput = {
+    id?: string
+    name: string
+    email: string
+    subject: string
+    message: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ContactUpdateWithoutPersonInput = {
@@ -3898,6 +4017,16 @@ export namespace Prisma {
   }
 
   export type ContactUncheckedUpdateWithoutPersonInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    subject?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContactUncheckedUpdateManyWithoutPersonInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string

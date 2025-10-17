@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./generated/prisma"
+  output   = "../prisma/generated/prisma"
 }
 
 datasource db {
@@ -14,16 +14,17 @@ model Contact {
   email     String
   subject   String
   message   String
-  person    Person?
+  person    Person?  @relation(fields: [personId], references: [id])
+  personId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Person {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  contact   Contact? @relation(fields: [contactId], references: [id])
-  contactId String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String    @id @default(cuid())
+  name      String    @unique
+  contact   Contact[]
+  contactId String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
