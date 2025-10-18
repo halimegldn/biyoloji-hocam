@@ -139,9 +139,26 @@ exports.Prisma.PersonScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LessonScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  level: 'level',
+  description: 'description',
+  color: 'color',
+  topics: 'topics',
+  outcomes: 'outcomes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -154,10 +171,17 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
   Contact: 'Contact',
-  Person: 'Person'
+  Person: 'Person',
+  Lesson: 'Lesson'
 };
 
 /**

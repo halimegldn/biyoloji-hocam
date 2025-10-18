@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Sidebar />
 
             {/* SAĞ İÇERİK ALANI */}
-            <main className="ml-40">{children}</main>
+            <main className="">{children}</main>
           </div>
         </ClientProviders>
       </body>

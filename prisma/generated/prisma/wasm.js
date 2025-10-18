@@ -111,9 +111,26 @@ exports.Prisma.PersonScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LessonScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  level: 'level',
+  description: 'description',
+  color: 'color',
+  topics: 'topics',
+  outcomes: 'outcomes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -126,10 +143,17 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 
 exports.Prisma.ModelName = {
   Contact: 'Contact',
-  Person: 'Person'
+  Person: 'Person',
+  Lesson: 'Lesson'
 };
 /**
  * Create the Client
@@ -142,7 +166,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\hg055702\\Desktop\\biyoloji-hocam\\prisma\\generated\\prisma",
+      "value": "C:\\Users\\gilda\\OneDrive\\Masaüstü\\biyoloji-hocam\\prisma\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -156,7 +180,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\hg055702\\Desktop\\biyoloji-hocam\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\gilda\\OneDrive\\Masaüstü\\biyoloji-hocam\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -178,13 +202,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../prisma/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Contact {\n  id        String   @id @default(cuid())\n  name      String\n  email     String\n  subject   String\n  message   String\n  person    Person?  @relation(fields: [personId], references: [id])\n  personId  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Person {\n  id        String    @id @default(cuid())\n  name      String    @unique\n  contact   Contact[]\n  contactId String?\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n}\n",
-  "inlineSchemaHash": "3b05b4b341c6fa4ca15d495207e8728550afe0aab9a4f18d610d5718f6bc92f8",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../prisma/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Contact {\n  id        String   @id @default(cuid())\n  name      String\n  email     String\n  subject   String\n  message   String\n  person    Person?  @relation(fields: [personId], references: [id])\n  personId  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Person {\n  id        String    @id @default(cuid())\n  name      String    @unique\n  contact   Contact[]\n  contactId String?\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n}\n\nmodel Lesson {\n  id          String   @id @default(cuid())\n  slug        String   @unique\n  title       String\n  level       String\n  description String\n  color       String?\n  topics      Json     @default(\"[]\")\n  outcomes    Json     @default(\"[]\")\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n}\n",
+  "inlineSchemaHash": "78c405278eb5e59531495750723980933e538f145501df3545f154639e0921a2",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Contact\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"subject\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"person\",\"kind\":\"object\",\"type\":\"Person\",\"relationName\":\"ContactToPerson\"},{\"name\":\"personId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Person\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contact\",\"kind\":\"object\",\"type\":\"Contact\",\"relationName\":\"ContactToPerson\"},{\"name\":\"contactId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Contact\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"subject\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"message\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"person\",\"kind\":\"object\",\"type\":\"Person\",\"relationName\":\"ContactToPerson\"},{\"name\":\"personId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Person\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"contact\",\"kind\":\"object\",\"type\":\"Contact\",\"relationName\":\"ContactToPerson\"},{\"name\":\"contactId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Lesson\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"slug\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"level\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"color\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"topics\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"outcomes\",\"kind\":\"scalar\",\"type\":\"Json\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),
